@@ -1,5 +1,9 @@
 package br.com.danllopes.autostoreweb.dtos;
 
+import br.com.danllopes.autostoreweb.domain.enums.BikeType;
+import br.com.danllopes.autostoreweb.domain.enums.Condition;
+import br.com.danllopes.autostoreweb.domain.enums.FuelType;
+import br.com.danllopes.autostoreweb.domain.enums.TransmissionType;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -14,14 +18,14 @@ public record MotorcycleRequestDTO(
         @NotNull
         short modelYear,
 
-        @NotBlank
-        String condition,
+        @NotNull
+        Condition condition,
 
-        @NotBlank
-        String fuelType,
+        @NotNull
+        FuelType fuelType,
 
-        @NotBlank
-        String transmissionType,
+        @NotNull
+        TransmissionType transmissionType,
 
         @NotNull
         int mileage,
@@ -29,7 +33,7 @@ public record MotorcycleRequestDTO(
         @NotNull
         short cylinderCapacity,
 
-        @NotBlank
-        String bikeType
+        @NotNull
+        BikeType bikeType
 ) {
 }

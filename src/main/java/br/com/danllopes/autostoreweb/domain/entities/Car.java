@@ -9,12 +9,13 @@ import jakarta.persistence.*;
 public class Car extends Vehicle{
 
     @Column(name = "num_doors")
-    private Byte numberOfDoors;
+    private Short numberOfDoors;
 
     @Column(name = "engine_capacity")
     private Double engineCapacity;
 
     @Column(name = "car_type")
+    @Enumerated(EnumType.STRING)
     private CarType carType;
 
     public Car() {super();}
@@ -23,14 +24,14 @@ public class Car extends Vehicle{
         super(data.brand(), data.model(), data.modelYear(), data.condition(), data.fuelType(), data.transmissionType(), data.mileage());
         this.numberOfDoors = data.numberOfDoors();
         this.engineCapacity = data.engineCapacity();
-        this.carType = CarType.valueOf(data.carType());
+        this.carType = data.carType();
     }
 
-    public Byte getNumberOfDoors() {
+    public Short getNumberOfDoors() {
         return numberOfDoors;
     }
 
-    public void setNumberOfDoors(Byte numberOfDoors) {
+    public void setNumberOfDoors(Short numberOfDoors) {
         this.numberOfDoors = numberOfDoors;
     }
 
