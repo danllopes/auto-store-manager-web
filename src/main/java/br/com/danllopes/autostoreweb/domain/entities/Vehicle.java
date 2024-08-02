@@ -21,22 +21,25 @@ public abstract class Vehicle {
     @Column(name = "model_year")
     private Short modelYear;
     @Column(name = "vehicle_condition ")
+    @Enumerated(EnumType.STRING)
     private Condition condition;
     @Column(name = "fuel_type")
+    @Enumerated(EnumType.STRING)
     private FuelType fuelType;
     @Column(name = "transmission_type")
+    @Enumerated(EnumType.STRING)
     private TransmissionType transmissionType;
     private Integer mileage;
 
     public Vehicle() {}
 
-    public Vehicle(String brand, String model, short year, String condition, String fuelType, String transmissionType, int mileage) {
+    public Vehicle(String brand, String model, short year, Condition condition, FuelType fuelType, TransmissionType transmissionType, int mileage) {
         this.brand = brand;
         this.model = model;
         this.modelYear = year;
-        this.condition = Condition.valueOf(condition);
-        this.fuelType = FuelType.valueOf(fuelType);
-        this.transmissionType = TransmissionType.valueOf(transmissionType);
+        this.condition = condition;
+        this.fuelType = fuelType;
+        this.transmissionType = transmissionType;
         this.mileage = mileage;
     }
 
