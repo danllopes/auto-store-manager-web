@@ -21,7 +21,7 @@ public class Motorcycle extends Vehicle{
     public Motorcycle(MotorcycleRequestDTO data) {
         super(data.brand(), data.model(), data.modelYear(), data.condition(), data.fuelType(), data.transmissionType(), data.mileage());
         this.cylinderCapacity = data.cylinderCapacity();
-        this.bikeType = BikeType.valueOf(data.bikeType());
+        this.bikeType = data.bikeType();
     }
 
     public Short getCylinderCapacity() {
