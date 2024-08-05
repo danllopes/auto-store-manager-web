@@ -1,9 +1,6 @@
 package br.com.danllopes.autostoreweb.dtos;
 
-import br.com.danllopes.autostoreweb.domain.enums.CarType;
-import br.com.danllopes.autostoreweb.domain.enums.Condition;
-import br.com.danllopes.autostoreweb.domain.enums.FuelType;
-import br.com.danllopes.autostoreweb.domain.enums.TransmissionType;
+import br.com.danllopes.autostoreweb.domain.enums.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
