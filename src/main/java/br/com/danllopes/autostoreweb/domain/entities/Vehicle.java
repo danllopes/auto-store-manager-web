@@ -3,6 +3,7 @@ package br.com.danllopes.autostoreweb.domain.entities;
 import br.com.danllopes.autostoreweb.domain.enums.Condition;
 import br.com.danllopes.autostoreweb.domain.enums.FuelType;
 import br.com.danllopes.autostoreweb.domain.enums.TransmissionType;
+import br.com.danllopes.autostoreweb.domain.enums.VehicleStatus;
 import jakarta.persistence.*;
 
 import java.util.Objects;
@@ -15,20 +16,28 @@ public abstract class Vehicle {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
-    private String brand;
-    private String model;
 
-    @Column(name = "model_year")
-    private Short modelYear;
     @Column(name = "vehicle_condition ")
     @Enumerated(EnumType.STRING)
     private Condition condition;
+
     @Column(name = "fuel_type")
     @Enumerated(EnumType.STRING)
     private FuelType fuelType;
+
     @Column(name = "transmission_type")
     @Enumerated(EnumType.STRING)
     private TransmissionType transmissionType;
+
+    @Column(name = "vehicle_status")
+    @Enumerated(EnumType.STRING)
+    private VehicleStatus status;
+
+    @Column(name = "model_year")
+    private Short modelYear;
+
+    private String brand;
+    private String model;
     private Integer mileage;
 
     public Vehicle() {}
@@ -41,6 +50,7 @@ public abstract class Vehicle {
         this.fuelType = fuelType;
         this.transmissionType = transmissionType;
         this.mileage = mileage;
+        this.status = VehicleStatus.FOR_SALE;
     }
 
     public String getId() {
@@ -101,6 +111,14 @@ public abstract class Vehicle {
 
     public void setMileage(Integer mileage) {
         this.mileage = mileage;
+    }
+
+    public VehicleStatus getStatus() {
+        return status;
+    }
+
+    public void updateToSold() {
+        this.status = VehicleStatus.SOLD;
     }
 
     @Override
