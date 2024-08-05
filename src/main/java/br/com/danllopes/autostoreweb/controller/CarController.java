@@ -1,8 +1,10 @@
 package br.com.danllopes.autostoreweb.controller;
 
 import br.com.danllopes.autostoreweb.domain.entities.Car;
+import br.com.danllopes.autostoreweb.domain.entities.Motorcycle;
 import br.com.danllopes.autostoreweb.dtos.CarRequestDTO;
 import br.com.danllopes.autostoreweb.services.CarService;
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,5 +35,18 @@ public class CarController {
     @PostMapping("/register")
     public ResponseEntity<Car> createCar(@RequestBody @Valid CarRequestDTO data) {
         return new ResponseEntity<>(this.service.createCar(data), HttpStatus.CREATED);
+    }
+
+    @PutMapping("/{carId}")
+    @Transactional
+    public ResponseEntity<Car> updateCar(@RequestBody @Valid CarRequestDTO data, @PathVariable String carId) {
+        return new ResponseEntity<>(this.service.updateCar(data, carId), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{carId}")
+    @Transactional
+    public ResponseEntity<Void> updateToSold(@PathVariable String carId) {
+        this.service.updateToSold(carId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
