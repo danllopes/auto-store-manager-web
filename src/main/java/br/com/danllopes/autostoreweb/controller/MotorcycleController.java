@@ -3,6 +3,7 @@ package br.com.danllopes.autostoreweb.controller;
 import br.com.danllopes.autostoreweb.domain.entities.Motorcycle;
 import br.com.danllopes.autostoreweb.dtos.MotorcycleRequestDTO;
 import br.com.danllopes.autostoreweb.services.MotorcycleService;
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,5 +34,18 @@ public class MotorcycleController {
     @GetMapping("/{motorcycleId}")
     public ResponseEntity<Motorcycle> getOptionalMotorcycle(@PathVariable String motorcycleId) {
         return new ResponseEntity<>(this.service.getOptionalMotorcycle(motorcycleId), HttpStatus.OK);
+    }
+
+    @PutMapping("/{motorcycleId}")
+    @Transactional
+    public ResponseEntity<Motorcycle> updateMotorcycle(@RequestBody @Valid MotorcycleRequestDTO data, @PathVariable String motorcycleId) {
+        return new ResponseEntity<>(this.service.updateMotorcycle(data, motorcycleId), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{motorcycleId}")
+    @Transactional
+    public ResponseEntity<Void> updateToSold(@PathVariable String motorcycleId) {
+        this.service.updateToSold(motorcycleId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
