@@ -6,5 +6,6 @@ CREATE TABLE IF NOT EXISTS `vehicle` (
     `vehicle_condition` VARCHAR(10) NOT NULL,
     `fuel_type` VARCHAR(8) NOT NULL,
     `transmission_type` VARCHAR(10) NOT NULL,
-    `mileage` INT NOT NULL
+    `mileage` INT NOT NULL,
+    `vehicle_status` VARCHAR(8) NOT NULL
 )
